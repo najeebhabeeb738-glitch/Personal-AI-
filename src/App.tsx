@@ -7,6 +7,7 @@ import {
   FileSearch,
   FolderKanban,
   ListTodo,
+  WifiOff,
 } from 'lucide-react';
 import { BrandLogo } from './components/BrandLogo';
 import { ChatMessage } from './components/ChatMessage';
@@ -17,6 +18,7 @@ import { ProjectsView } from './components/ProjectsView';
 import { SettingsModal } from './components/SettingsModal';
 import { Sidebar } from './components/Sidebar';
 import { TopBar } from './components/TopBar';
+import { useOnlineStatus } from './hooks/usePWAInstall';
 import {
   clearAllLocalData,
   DEFAULT_SETTINGS,
@@ -118,6 +120,7 @@ export default function App() {
   );
   const [activeTab, setActiveTab] = useState<SidebarTab>('chats');
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const isOnline = useOnlineStatus();
 
   const [modes, setModes] = useState<AssistantModeInfo[]>(FALLBACK_MODES);
   const [selectedModeId, setSelectedModeId] = useState<AssistantModeId>(settings.defaultMode);
@@ -1120,6 +1123,17 @@ export default function App() {
         ) : (
           /* Main Chat Viewport */
           <main className="relative flex-1 flex flex-col min-h-0">
+            {!isOnline && (
+              <div className="px-4 pt-3">
+                <div className="max-w-3xl mx-auto rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 px-4 py-2.5 flex items-center gap-2.5 text-xs text-zinc-700 dark:text-zinc-300">
+                  <WifiOff className="w-4 h-4 text-zinc-500 shrink-0" />
+                  <span>
+                    You&apos;re offline. Saved conversations remain readable locally; AI responses resume when reconnected.
+                  </span>
+                </div>
+              </div>
+            )}
+
             {apiConfigured === false && (
               <div className="px-4 pt-3">
                 <div className="max-w-3xl mx-auto rounded-2xl border border-amber-200 dark:border-amber-900/70 bg-amber-50/80 dark:bg-amber-950/30 px-4 py-3 flex items-start gap-3 text-xs text-amber-900 dark:text-amber-200">

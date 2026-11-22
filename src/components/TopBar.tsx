@@ -20,6 +20,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
+import { PWAInstallButton } from './PWAInstallButton';
 import type { AssistantModeId, AssistantModeInfo, Conversation } from '../types';
 
 interface TopBarProps {
@@ -437,6 +438,8 @@ export const TopBar: React.FC<TopBarProps> = ({
                   <div className="my-1 border-t border-zinc-200/80 dark:border-zinc-800" />
                 </>
               ) : null}
+
+              <PWAInstallButton variant="menu" onActionComplete={() => setConvMenuOpen(false)} />
 
               <button
                 type="button"

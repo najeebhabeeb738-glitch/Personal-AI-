@@ -16,6 +16,7 @@ import {
   X,
 } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
+import { PWAInstallButton } from './PWAInstallButton';
 import type { AssistantModeId, AssistantModeInfo, ThemeMode, UserSettings } from '../types';
 
 type SettingsSection =
@@ -509,6 +510,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                     All chats, projects, and memories remain stored privately on this device.
                   </p>
                 </div>
+
+                <PWAInstallButton variant="card" />
               </div>
             )}
           </div>
