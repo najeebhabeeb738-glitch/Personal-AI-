@@ -1,0 +1,6 @@
+{
+  "name": "PERSONAL AI",
+  "description": "A minimal, multimodal personal AI assistant and agent.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
